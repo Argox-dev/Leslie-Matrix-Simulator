@@ -174,5 +174,5 @@ function updateLength() {
 scaleInput.addEventListener("input", update);
 tableLengthInput.addEventListener("input", updateLength);
 
-update();
 updateLength();
+update();
