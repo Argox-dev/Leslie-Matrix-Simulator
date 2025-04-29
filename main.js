@@ -42,7 +42,7 @@ class LeslieSimulation {
     getTotalPopulationAt(p_time) {
         
         let popVec = this.nVector;
-        if (p_time != 0) math.multiply(math.pow(this.lMatrix, p_time-1), this.nVector).toArray();
+        if (p_time != 0) popVec = math.multiply(math.pow(this.lMatrix, p_time-1), this.nVector).toArray();
         let population = 0;
         for (var i = 0; i < this.maxTime; i++) {
             population += popVec[i] * 2;
