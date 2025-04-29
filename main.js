@@ -6,6 +6,7 @@ class LeslieSimulation {
 
     update(p_maxTime) {
         p_maxTime = p_maxTime || this.maxTime;
+        this.maxTime = p_maxTime;
 
         let lArray = Array.from({ length: p_maxTime }, (_, index) => Array.from({ length: p_maxTime }, (_, index) => 0));
         let nArray = Array.from({ length: p_maxTime }, (_, index) => 0);
@@ -16,7 +17,6 @@ class LeslieSimulation {
         for (var i = 0; i < p_maxTime; i++) {
             const rowStr = "leslie-table-row-" + i;
 
-            console.log(i + " || ");
             const year = Number(document.getElementById(rowStr + "-year").value);
             const numberFem = Number(document.getElementById(rowStr + "-numberfem").value);
 
@@ -24,8 +24,6 @@ class LeslieSimulation {
             if (i + 1 < p_maxTime) survival = Number(document.getElementById(rowStr + "-survival").value);
 
             const firtility = Number(document.getElementById(rowStr + "-firtility").value);
-
-            console.log(numberFem);
 
             nArray[i] = numberFem;
 
@@ -42,7 +40,6 @@ class LeslieSimulation {
     }
 
     getTotalPopulationAt(p_time) {
-        console.log(this.lMatrix)
         let popVec = math.multiply(math.pow(this.lMatrix, p_time), this.nVector).toArray();
         let population = 0;
         for (var i = 0; i < this.maxTime; i++) {
@@ -121,7 +118,7 @@ class LeslieTable {
             survInput.onchange = () => { update() };
             survColum.appendChild(survInput);
             row.appendChild(survColum);
-            if (i + 1 < length) survColum.innerHTML = 0;
+            if (!(i + 1 < length)) survColum.innerHTML = 0;
 
             const fertColum = document.createElement("td");
             const fertInput = document.createElement("input");
@@ -165,11 +162,12 @@ const scaleInput = document.getElementById("timescale-slider");
 const tableLengthInput = document.getElementById("table-length-picker");
 let currentTableLength = 3;
 function update() {
-    simulation.update();
+    simulation.update(currentTableLength);
     simulation.renderGraph(Number(scaleInput.value));
 }
 function updateLength() {
-    table.update(tableLengthInput.value);
+    currentTableLength = tableLengthInput.value;
+    table.update(currentTableLength);
     simulation.update(tableLengthInput.value);
 };
 
@@ -177,3 +175,4 @@ scaleInput.addEventListener("input", update);
 tableLengthInput.addEventListener("input", updateLength);
 
 update();
+updateLength();
