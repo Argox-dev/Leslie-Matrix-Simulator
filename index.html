@@ -2,9 +2,78 @@
 
 <html>
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://unpkg.com/mathjs@14.4.0/lib/browser/math.js"></script>
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <h1>Hello</h1>
+    <div id="side-pannel">
+        <div id="side-pannel-toolbar">
+            <h2>Size</h2>
+            <input type="number" id="table-length-picker" min="0" value="3" />
+        </div>
+        <table id="leslie-table">
+            <tr id="leslie-table-lable-row">
+                <td>Year</td>
+                <td>
+                    Female
+                    Population
+                </td>
+                <td>
+                    Survival
+                    Rate
+                </td>
+                <td>
+                    Firtility
+                    Rate
+                </td>
+            </tr>
+            <tr id="leslie-table-row-0">
+                <td id="leslie-table-row-0-year">0</td>
+                <td>
+                    <input type="number" id="leslie-table-row-0-numberfem" value="55" />
+                </td>
+                <td>
+                    <input type="number" id="leslie-table-row-0-survival" value="0.5" />
+                </td>
+                <td>
+                    <input type="number" id="leslie-table-row-0-firtility" value="0.6" />
+                </td>
+            </tr>
+            <tr id="leslie-table-row-1">
+                <td id="leslie-table-row-1-year">1</td>
+                <td>
+                    <input type="number" id="leslie-table-row-1-numberfem" value="32" />
+                </td>
+                <td>
+                    <input type="number" id="leslie-table-row-1-survival" value="0.6" />
+                </td>
+                <td>
+                    <input type="number" id="leslie-table-row-1-firtility" value="2.4"/>
+                </td>
+            </tr>
+            <tr id="leslie-table-row-2">
+                <td id="leslie-table-row-2-year">2</td>
+                <td>
+                    <input type="number" id="leslie-table-row-2-numberfem" value="25" />
+                </td>
+                <td>
+                    <input type="number" id="leslie-table-row-2-survival" value="0" />
+                </td>
+                <td>
+                    <input type="number" id="leslie-table-row-2-firtility" value="0.5" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="view-pannel">
+        <canvas id="population-graph"></canvas>
+        <div id="slider-container">
+            <input type="range" min="1" max="100" value="10" id="timescale-slider">
+        </div>
+    </div>
+
+
+    <script src="main.js"></script>
 </body>
 </html>
